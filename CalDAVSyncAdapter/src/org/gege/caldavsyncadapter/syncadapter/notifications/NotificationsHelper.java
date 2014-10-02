@@ -1,12 +1,17 @@
 package org.gege.caldavsyncadapter.syncadapter.notifications;
 
-import org.gege.caldavsyncadapter.R;
-
+import android.app.Notification;
 import android.app.NotificationManager;
+
 //import android.app.PendingIntent;
+
 import android.content.Context;
+
 //import android.content.Intent;
-import android.support.v4.app.NotificationCompat;
+
+//import android.support.v4.app.NotificationCompat;
+
+import org.gege.caldavsyncadapter.R;
 //import android.support.v4.app.TaskStackBuilder;
 
 public class NotificationsHelper {
@@ -15,11 +20,17 @@ public class NotificationsHelper {
 	 doesn't exist */
 	
 	public static void signalSyncErrors(Context context, String title, String text) {
-		NotificationCompat.Builder mBuilder =
+        Notification notification = new Notification.Builder(context)
+            .setContentTitle(title)
+            .setContentText(text)
+            .setSmallIcon(R.drawable.icon)
+            .build();
+
+		/*NotificationCompat.Builder mBuilder =
 		        new NotificationCompat.Builder(context)
 		        .setSmallIcon(R.drawable.icon)
 		        .setContentTitle(title)
-		        .setContentText(text);
+		        .setContentText(text);*/
 		
 		// Creates an explicit intent for an Activity in your app
 /*		Intent resultIntent = new Intent(context, SyncStatusReportActivity.class);
@@ -46,7 +57,8 @@ public class NotificationsHelper {
 			
 			// mId allows you to update the notification later on.
 		int mId = 0;
-		mNotificationManager.notify(mId, mBuilder.build());
+		//mNotificationManager.notify(mId, mBuilder.build());
+		mNotificationManager.notify(mId, notification);
 	}
 
 	/*public static SyncLog getCurrentSyncLog() {
