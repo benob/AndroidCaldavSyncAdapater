@@ -304,6 +304,16 @@ public class CalendarEvent extends org.gege.caldavsyncadapter.Event {
 				}
 			}
 		}
+
+        // add one reminder if there are none!
+        if(Result.size() == 0) {
+            Reminder = new ContentValues();
+            Reminder.put(Reminders.MINUTES, 15);
+            Reminder.put(Reminders.EVENT_ID, ContentUris.parseId(mAndroidEventUri));
+            Reminder.put(Reminders.METHOD, Reminders.METHOD_ALERT);
+            Result.add(Reminder);
+        }
+
 		return Result;
 	}
 	
